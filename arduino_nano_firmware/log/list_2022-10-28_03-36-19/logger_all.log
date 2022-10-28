@@ -1,0 +1,227 @@
+[0.280s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'list', '-n']
+[0.280s] DEBUG:colcon:Parsed command line arguments: Namespace(allow_overriding=[], base_paths=['.'], build_base='build', ignore_user_meta=False, log_base=None, log_level=None, main=<bound method ListVerb.main of <colcon_package_information.verb.list.ListVerb object at 0x7fca192e9b20>>, metas=['./colcon.meta'], names_only=True, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, paths=None, paths_only=False, topological_graph=False, topological_graph_density=False, topological_graph_dot=False, topological_graph_dot_cluster=False, topological_graph_dot_include_skipped=False, topological_graph_legend=False, topological_order=False, verb_extension=<colcon_package_information.verb.list.ListVerb object at 0x7fca192e9b20>, verb_name='list', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7fca192665e0>)
+[0.362s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.366s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.369s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.369s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.369s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.369s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.369s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/videh/Documents/Inventory-Dispensing-System/arduino_nano_firmware'
+[0.369s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.370s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.373s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.373s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.373s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.374s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.374s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.374s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(include) by extensions ['ignore', 'ignore_ament_install']
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(include) by extension 'ignore'
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(include) by extension 'ignore_ament_install'
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(include) by extensions ['colcon_pkg']
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(include) by extension 'colcon_pkg'
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(include) by extensions ['colcon_meta']
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(include) by extension 'colcon_meta'
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(include) by extensions ['ros']
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(include) by extension 'ros'
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(include) by extensions ['cmake', 'python']
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(include) by extension 'cmake'
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(include) by extension 'python'
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(include) by extensions ['python_setup_py']
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(include) by extension 'python_setup_py'
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(lib) by extensions ['ignore', 'ignore_ament_install']
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(lib) by extension 'ignore'
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(lib) by extension 'ignore_ament_install'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(lib) by extensions ['colcon_pkg']
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(lib) by extension 'colcon_pkg'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(lib) by extensions ['colcon_meta']
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(lib) by extension 'colcon_meta'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(lib) by extensions ['ros']
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(lib) by extension 'ros'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(lib) by extensions ['cmake', 'python']
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(lib) by extension 'cmake'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(lib) by extension 'python'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(lib) by extensions ['python_setup_py']
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(lib) by extension 'python_setup_py'
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC) by extensions ['ignore', 'ignore_ament_install']
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC) by extension 'ignore'
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC) by extension 'ignore_ament_install'
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC) by extensions ['colcon_pkg']
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC) by extension 'colcon_pkg'
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC) by extensions ['colcon_meta']
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC) by extension 'colcon_meta'
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC) by extensions ['ros']
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC) by extension 'ros'
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC) by extensions ['cmake', 'python']
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC) by extension 'cmake'
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC) by extension 'python'
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC) by extensions ['python_setup_py']
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC) by extension 'python_setup_py'
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples) by extensions ['ignore', 'ignore_ament_install']
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples) by extension 'ignore'
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples) by extension 'ignore_ament_install'
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples) by extensions ['colcon_pkg']
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples) by extension 'colcon_pkg'
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples) by extensions ['colcon_meta']
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples) by extension 'colcon_meta'
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples) by extensions ['ros']
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples) by extension 'ros'
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples) by extensions ['cmake', 'python']
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples) by extension 'cmake'
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples) by extension 'python'
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples) by extensions ['python_setup_py']
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples) by extension 'python_setup_py'
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Calibration) by extensions ['ignore', 'ignore_ament_install']
+[0.451s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Calibration) by extension 'ignore'
+[0.451s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Calibration) by extension 'ignore_ament_install'
+[0.451s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Calibration) by extensions ['colcon_pkg']
+[0.451s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Calibration) by extension 'colcon_pkg'
+[0.451s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Calibration) by extensions ['colcon_meta']
+[0.451s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Calibration) by extension 'colcon_meta'
+[0.452s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Calibration) by extensions ['ros']
+[0.452s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Calibration) by extension 'ros'
+[0.452s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Calibration) by extensions ['cmake', 'python']
+[0.453s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Calibration) by extension 'cmake'
+[0.453s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Calibration) by extension 'python'
+[0.453s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Calibration) by extensions ['python_setup_py']
+[0.453s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Calibration) by extension 'python_setup_py'
+[0.454s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Persistent_zero_offset) by extensions ['ignore', 'ignore_ament_install']
+[0.454s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Persistent_zero_offset) by extension 'ignore'
+[0.454s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Persistent_zero_offset) by extension 'ignore_ament_install'
+[0.454s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Persistent_zero_offset) by extensions ['colcon_pkg']
+[0.455s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Persistent_zero_offset) by extension 'colcon_pkg'
+[0.455s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Persistent_zero_offset) by extensions ['colcon_meta']
+[0.455s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Persistent_zero_offset) by extension 'colcon_meta'
+[0.455s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Persistent_zero_offset) by extensions ['ros']
+[0.455s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Persistent_zero_offset) by extension 'ros'
+[0.455s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Persistent_zero_offset) by extensions ['cmake', 'python']
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Persistent_zero_offset) by extension 'cmake'
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Persistent_zero_offset) by extension 'python'
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Persistent_zero_offset) by extensions ['python_setup_py']
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Persistent_zero_offset) by extension 'python_setup_py'
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell) by extensions ['ignore', 'ignore_ament_install']
+[0.457s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell) by extension 'ignore'
+[0.457s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell) by extension 'ignore_ament_install'
+[0.457s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell) by extensions ['colcon_pkg']
+[0.457s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell) by extension 'colcon_pkg'
+[0.457s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell) by extensions ['colcon_meta']
+[0.457s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell) by extension 'colcon_meta'
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell) by extensions ['ros']
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell) by extension 'ros'
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell) by extensions ['cmake', 'python']
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell) by extension 'cmake'
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell) by extension 'python'
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell) by extensions ['python_setup_py']
+[0.459s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell) by extension 'python_setup_py'
+[0.459s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell_interrupt_driven) by extensions ['ignore', 'ignore_ament_install']
+[0.459s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell_interrupt_driven) by extension 'ignore'
+[0.459s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell_interrupt_driven) by extension 'ignore_ament_install'
+[0.459s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell_interrupt_driven) by extensions ['colcon_pkg']
+[0.460s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell_interrupt_driven) by extension 'colcon_pkg'
+[0.460s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell_interrupt_driven) by extensions ['colcon_meta']
+[0.460s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell_interrupt_driven) by extension 'colcon_meta'
+[0.460s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell_interrupt_driven) by extensions ['ros']
+[0.460s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell_interrupt_driven) by extension 'ros'
+[0.460s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell_interrupt_driven) by extensions ['cmake', 'python']
+[0.460s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell_interrupt_driven) by extension 'cmake'
+[0.461s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell_interrupt_driven) by extension 'python'
+[0.461s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell_interrupt_driven) by extensions ['python_setup_py']
+[0.461s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_1x_load_cell_interrupt_driven) by extension 'python_setup_py'
+[0.461s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_2x_load_cell) by extensions ['ignore', 'ignore_ament_install']
+[0.462s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_2x_load_cell) by extension 'ignore'
+[0.462s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_2x_load_cell) by extension 'ignore_ament_install'
+[0.462s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_2x_load_cell) by extensions ['colcon_pkg']
+[0.462s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_2x_load_cell) by extension 'colcon_pkg'
+[0.462s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_2x_load_cell) by extensions ['colcon_meta']
+[0.462s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_2x_load_cell) by extension 'colcon_meta'
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_2x_load_cell) by extensions ['ros']
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_2x_load_cell) by extension 'ros'
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_2x_load_cell) by extensions ['cmake', 'python']
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_2x_load_cell) by extension 'cmake'
+[0.463s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_2x_load_cell) by extension 'python'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_2x_load_cell) by extensions ['python_setup_py']
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Read_2x_load_cell) by extension 'python_setup_py'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Testing) by extensions ['ignore', 'ignore_ament_install']
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Testing) by extension 'ignore'
+[0.464s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Testing) by extension 'ignore_ament_install'
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Testing) by extensions ['colcon_pkg']
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Testing) by extension 'colcon_pkg'
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Testing) by extensions ['colcon_meta']
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Testing) by extension 'colcon_meta'
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Testing) by extensions ['ros']
+[0.465s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Testing) by extension 'ros'
+[0.467s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Testing) by extensions ['cmake', 'python']
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Testing) by extension 'cmake'
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Testing) by extension 'python'
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Testing) by extensions ['python_setup_py']
+[0.468s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/examples/Testing) by extension 'python_setup_py'
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/extra) by extensions ['ignore', 'ignore_ament_install']
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/extra) by extension 'ignore'
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/extra) by extension 'ignore_ament_install'
+[0.469s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/extra) by extensions ['colcon_pkg']
+[0.470s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/extra) by extension 'colcon_pkg'
+[0.470s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/extra) by extensions ['colcon_meta']
+[0.470s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/extra) by extension 'colcon_meta'
+[0.470s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/extra) by extensions ['ros']
+[0.470s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/extra) by extension 'ros'
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/extra) by extensions ['cmake', 'python']
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/extra) by extension 'cmake'
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/extra) by extension 'python'
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/extra) by extensions ['python_setup_py']
+[0.471s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/extra) by extension 'python_setup_py'
+[0.472s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/src) by extensions ['ignore', 'ignore_ament_install']
+[0.472s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/src) by extension 'ignore'
+[0.472s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/src) by extension 'ignore_ament_install'
+[0.472s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/src) by extensions ['colcon_pkg']
+[0.472s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/src) by extension 'colcon_pkg'
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/src) by extensions ['colcon_meta']
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/src) by extension 'colcon_meta'
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/src) by extensions ['ros']
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/src) by extension 'ros'
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/src) by extensions ['cmake', 'python']
+[0.473s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/src) by extension 'cmake'
+[0.474s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/src) by extension 'python'
+[0.474s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/src) by extensions ['python_setup_py']
+[0.474s] Level 1:colcon.colcon_core.package_identification:_identify(lib/HX711_ADC/src) by extension 'python_setup_py'
+[0.474s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.475s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.475s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.475s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.475s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.475s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.476s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.478s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.478s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.478s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.479s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.479s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.479s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.479s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.479s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.480s] Level 1:colcon.colcon_core.package_identification:_identify(test) by extensions ['ignore', 'ignore_ament_install']
+[0.480s] Level 1:colcon.colcon_core.package_identification:_identify(test) by extension 'ignore'
+[0.480s] Level 1:colcon.colcon_core.package_identification:_identify(test) by extension 'ignore_ament_install'
+[0.480s] Level 1:colcon.colcon_core.package_identification:_identify(test) by extensions ['colcon_pkg']
+[0.480s] Level 1:colcon.colcon_core.package_identification:_identify(test) by extension 'colcon_pkg'
+[0.480s] Level 1:colcon.colcon_core.package_identification:_identify(test) by extensions ['colcon_meta']
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(test) by extension 'colcon_meta'
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(test) by extensions ['ros']
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(test) by extension 'ros'
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(test) by extensions ['cmake', 'python']
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(test) by extension 'cmake'
+[0.481s] Level 1:colcon.colcon_core.package_identification:_identify(test) by extension 'python'
+[0.482s] Level 1:colcon.colcon_core.package_identification:_identify(test) by extensions ['python_setup_py']
+[0.482s] Level 1:colcon.colcon_core.package_identification:_identify(test) by extension 'python_setup_py'
+[0.482s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.482s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.482s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.482s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.482s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
