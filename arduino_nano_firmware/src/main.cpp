@@ -2,8 +2,6 @@
 #include <HX711_ADC.h>
 #include <ANCounter.h>
 
-#define SAMPLES
-
 //pins:
 uint8_t HX711_dout = 4; //mcu > HX711 dout pin
 uint8_t HX711_sck = 5; //mcu > HX711 sck pin
@@ -13,10 +11,13 @@ HX711_ADC LoadCell(HX711_dout, HX711_sck);
 const int calVal_eepromAdress = 0;
 unsigned long t = 0;
 
+
 void setup() {
-  Serial.begin(57600); delay(10);
-  Serial.println();
-  Serial.println("Starting...");
+  if(DEBUG){
+    Serial.begin(57600); delay(10);
+    Serial.println();
+    Serial.println("Starting...");
+  }
 
   LoadCell.begin();
   //LoadCell.setReverseOutput(); //uncomment to turn a negative output value to positive
