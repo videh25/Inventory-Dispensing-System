@@ -4,10 +4,12 @@
 HX711_ADC* LoadCells = (HX711_ADC*) malloc(sizeof(HX711_ADC));
 int num_compartments;
 int num_loadcells;
+float load_tares[8];
 int compa_loadcells[12];
 int compa_calibs[12];
 
 void init_attached_loadcells(){
+  float tares_[8];
   bool resume_ = true;
   Serial.println("***");
   Serial.println("Initialising Loadcells:");
@@ -32,7 +34,7 @@ void init_attached_loadcells(){
   LoadCells = (HX711_ADC*)malloc(sizeof(HX711_ADC)*num_loadcells_);
   free(dummy_LoadCells);
   for(int i = 0; i < num_loadcells_; i++){
-    LoadCells[i] = HX711_ADC(4+2*i, 5+2*i);
+    LoadCells[i] = HX711_ADC(2+2*i, 3+2*i);
   }
 
   resume_ = false;
@@ -46,6 +48,11 @@ void init_attached_loadcells(){
       }
     }
   }
+
+  for(int i = 0; i <num_loadcells_; i++){
+    LoadCells[i].begin(128);
+  }
+
   resume_ = false;
   while (!resume_) { //run startup, stabilization and tare, both modules simultaniously
     for(int i = 0; i<num_loadcells_; i++){
@@ -58,11 +65,11 @@ void init_attached_loadcells(){
     }
   }
   
-  resume_ = false;
-  for(int i = 0; i < num_loadcells_; i++){
-    LoadCells[i].tareNoDelay();
-    LoadCells[i].update();
-  }
+  // resume_ = false;
+  // for(int i = 0; i < num_loadcells_; i++){
+  //   LoadCells[i].tareNoDelay();
+  //   LoadCells[i].update();
+  // }
   
   for(int i = 0; i<num_loadcells_; i++){
     if (LoadCells[i].getTareTimeoutFlag() || LoadCells[i].getSignalTimeoutFlag()) {
@@ -80,9 +87,15 @@ void init_attached_loadcells(){
   // }
 
   for(int i  = 0; i < num_loadcells_; i++){
+    LoadCells[i].setTareOffset(0);
     LoadCells[i].setCalFactor(1.0);
   }
-
+  
+  for(int i = 0; i < num_loadcells_; i++){
+    LoadCells[i].refreshDataSet();
+    tares_[i] = LoadCells[i].getData();
+    Serial.print("Loadcell_"); Serial.print(i+1); Serial.print(" tared for an offset of "); Serial.println(tares_[i]);
+  }
   num_loadcells = num_loadcells_;
 }
 
@@ -118,9 +131,7 @@ void calibrate_attached_compartments(){
       }
     }
 
-    Serial.println("here0");
     LoadCells[compa_cell_-1].refreshDataSet();
-    Serial.println("here1");
     float old_measured_weight = LoadCells[compa_cell_-1].getData();
 
     Serial.print("Put a known quantity in compartment_"); Serial.print(compa); Serial.print(" and enter the quantity: ");
@@ -143,7 +154,7 @@ void calibrate_attached_compartments(){
     delay(1500);
     LoadCells[compa_cell_-1].refreshDataSet();
     float current_measured_weight = LoadCells[compa_cell_-1].getData();
-    float calib_weight_ = (current_measured_weight - old_measured_weight)/known_quan_;
+    float calib_weight_ = (current_measured_weight - old_measured_weight)/float(known_quan_);
     Serial.print("Compartment_"); Serial.print(compa); Serial.print(" caliberated to value: "); Serial.println(calib_weight_);
 
     compa_calibs[compa - 'A'] = calib_weight_;
@@ -178,4 +189,9 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  for (int i = 0; i < num_loadcells; i++){
+    LoadCells[i].refreshDataSet();
+    Serial.print("Current Weight: "); Serial.println(LoadCells[i].getData());
+    delay(2000);
+  }
 }
