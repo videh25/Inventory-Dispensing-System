@@ -1,15 +1,15 @@
 #include <Arduino.h>
 #include <HX711_ADC.h>
 
-HX711_ADC* LoadCells = (HX711_ADC*) malloc(sizeof(HX711_ADC));
+HX711_ADC LoadCells[1];
+// HX711_ADC Loadcell_1 = HX711_ADC(2, 3);
 int num_compartments;
 int num_loadcells;
-float load_tares[8];
 int compa_loadcells[12];
 int compa_calibs[12];
+long last_reading;
 
 void init_attached_loadcells(){
-  float tares_[8];
   bool resume_ = true;
   Serial.println("***");
   Serial.println("Initialising Loadcells:");
@@ -30,15 +30,17 @@ void init_attached_loadcells(){
 
   bool *loadcell_rdys = (bool*) malloc(sizeof(bool)*num_loadcells_);
   memset(loadcell_rdys, false, num_loadcells_*sizeof(bool));
-  HX711_ADC* dummy_LoadCells = LoadCells;
-  LoadCells = (HX711_ADC*)malloc(sizeof(HX711_ADC)*num_loadcells_);
-  free(dummy_LoadCells);
-  for(int i = 0; i < num_loadcells_; i++){
-    LoadCells[i] = HX711_ADC(2+2*i, 3+2*i);
-  }
+  // HX711_ADC* dummy_LoadCells = LoadCells;
+  // LoadCells = (HX711_ADC*)malloc(sizeof(HX711_ADC)*num_loadcells_);
+  // free(dummy_LoadCells);
+  
+  // for(int i = 0; i < num_loadcells_; i++){
+  //   LoadCells[i] = HX711_ADC(2+2*i, 3+2*i);
+  // }
+  LoadCells[0].init(2, 3);
 
   resume_ = false;
-  Serial.println("Enter t to start tare");
+  Serial.println("Enter t when all connections are done");
   while(!resume_) {
     if (Serial.available() > 0) {
       char inByte = Serial.read();
@@ -64,12 +66,12 @@ void init_attached_loadcells(){
       resume_ &= loadcell_rdys[i];
     }
   }
-  
-  // resume_ = false;
-  // for(int i = 0; i < num_loadcells_; i++){
-  //   LoadCells[i].tareNoDelay();
-  //   LoadCells[i].update();
-  // }
+
+  resume_ = false;
+  for(int i = 0; i < num_loadcells_; i++){
+    LoadCells[i].tareNoDelay();
+    if (LoadCells[i].update() == 2) resume_ = true;
+  }
   
   for(int i = 0; i<num_loadcells_; i++){
     if (LoadCells[i].getTareTimeoutFlag() || LoadCells[i].getSignalTimeoutFlag()) {
@@ -78,23 +80,9 @@ void init_attached_loadcells(){
     }
   }
 
-  // for(int i = 0; i < num_loadcells_; i++){
-  //   LoadCells[i].start(2000, true);
-  //   if (LoadCells[i].getTareTimeoutFlag() || LoadCells[i].getSignalTimeoutFlag()) {
-  //     Serial.println("Timeout, check MCU>HX711 wiring and pin designations");
-  //     while (1);
-  //   }
-  // }
-
   for(int i  = 0; i < num_loadcells_; i++){
     LoadCells[i].setTareOffset(0);
     LoadCells[i].setCalFactor(1.0);
-  }
-  
-  for(int i = 0; i < num_loadcells_; i++){
-    LoadCells[i].refreshDataSet();
-    tares_[i] = LoadCells[i].getData();
-    Serial.print("Loadcell_"); Serial.print(i+1); Serial.print(" tared for an offset of "); Serial.println(tares_[i]);
   }
   num_loadcells = num_loadcells_;
 }
@@ -132,8 +120,8 @@ void calibrate_attached_compartments(){
     }
 
     LoadCells[compa_cell_-1].refreshDataSet();
-    float old_measured_weight = LoadCells[compa_cell_-1].getData();
-
+    long old_measured_weight = LoadCells[compa_cell_-1].smoothedData();
+    Serial.print("Measured a weight of "); Serial.print(old_measured_weight); Serial.print(" when compartment_"); Serial.print(compa); Serial.println(" is empty.");
     Serial.print("Put a known quantity in compartment_"); Serial.print(compa); Serial.print(" and enter the quantity: ");
     resume_ = false;
     while(!resume_) {
@@ -146,19 +134,14 @@ void calibrate_attached_compartments(){
       }
     }
     
-    Serial.println("Caliberating Item Weight... ");
-    delay(1500);
-    Serial.println("Caliberating Item Weight... ");
-    delay(1500);
-    Serial.println("Caliberating Item Weight... ");
-    delay(1500);
     LoadCells[compa_cell_-1].refreshDataSet();
-    float current_measured_weight = LoadCells[compa_cell_-1].getData();
-    float calib_weight_ = (current_measured_weight - old_measured_weight)/float(known_quan_);
+    long current_measured_weight = LoadCells[compa_cell_-1].smoothedData();
+    long calib_weight_ = (current_measured_weight - old_measured_weight)/float(known_quan_);
     Serial.print("Compartment_"); Serial.print(compa); Serial.print(" caliberated to value: "); Serial.println(calib_weight_);
 
     compa_calibs[compa - 'A'] = calib_weight_;
     compa_loadcells[compa - 'A'] = compa_cell_;
+    last_reading = current_measured_weight;
   }
 }
 
@@ -169,29 +152,30 @@ void setup() {
 
   init_attached_loadcells();
   calibrate_attached_compartments();
-  // LoadCell.begin();
-  // //LoadCell.setReverseOutput(); //uncomment to turn a negative output value to positive
-  // unsigned long stabilizingtime = 2000; // preciscion right after power-up can be improved by adding a few seconds of stabilizing time
-  // boolean _tare = true; //set this to false if you don't want tare to be performed in the next step
-  // LoadCell.start(stabilizingtime, _tare);
-  // if (LoadCell.getTareTimeoutFlag() || LoadCell.getSignalTimeoutFlag()) {
-  //   Serial.println("Timeout, check MCU>HX711 wiring and pin designations");
-  //   while (1);
-  // }
-  // else {
-  //   LoadCell.setCalFactor(1.0); // user set calibration value (float), initial value 1.0 may be used for this sketch
-  //   Serial.println("Startup is complete");
-  // }
-  // while (!LoadCell.update());
-  // calibrate(); //start calibration procedure
   Serial.println("Thats all folks!");
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   for (int i = 0; i < num_loadcells; i++){
+
     LoadCells[i].refreshDataSet();
-    Serial.print("Current Weight: "); Serial.println(LoadCells[i].getData());
-    delay(2000);
+    long current_reading = LoadCells[i].smoothedData();
+    Serial.print("Current Weight: "); Serial.println(round(float(current_reading - last_reading)/float(compa_calibs[i])));
+    last_reading = current_reading;
+    if(LoadCells[i].DataOutOfRange()) Serial.println("DATA OUT OF RANGE.");
+
+    bool resume_ = false;
+    Serial.println("Enter c after you change the quantity");
+    while(!resume_) {
+      if (Serial.available() > 0) {
+        char inByte = Serial.read();
+        if (inByte == 'c') {
+          while (Serial.available() > 0){ inByte = Serial.read();}
+          resume_ = true;
+        }
+      }
+    }
+
   }
 }
