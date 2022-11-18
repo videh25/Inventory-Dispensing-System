@@ -1,8 +1,7 @@
 #include <Arduino.h>
 #include <HX711_ADC.h>
 
-HX711_ADC LoadCells[1];
-// HX711_ADC Loadcell_1 = HX711_ADC(2, 3);
+HX711_ADC LoadCells[8];
 int num_compartments;
 int num_loadcells;
 int compa_loadcells[12];
@@ -30,14 +29,9 @@ void init_attached_loadcells(){
 
   bool *loadcell_rdys = (bool*) malloc(sizeof(bool)*num_loadcells_);
   memset(loadcell_rdys, false, num_loadcells_*sizeof(bool));
-  // HX711_ADC* dummy_LoadCells = LoadCells;
-  // LoadCells = (HX711_ADC*)malloc(sizeof(HX711_ADC)*num_loadcells_);
-  // free(dummy_LoadCells);
-  
-  // for(int i = 0; i < num_loadcells_; i++){
-  //   LoadCells[i] = HX711_ADC(2+2*i, 3+2*i);
-  // }
-  LoadCells[0].init(2, 3);
+  for(int i = 0; i < num_loadcells_; i++){
+    LoadCells[i].init(2+2*i, 3+2*i);
+  }
 
   resume_ = false;
   Serial.println("Enter t when all connections are done");
