@@ -204,6 +204,9 @@ void setup() {
 
   Serial.println("Starting test");
   Serial.println();
+  for(int i = 0; i < EEPROM[1]; i++){
+    LoadCells[i].powerDown();
+  }
   // read_from_EEPROM();
 }
 
@@ -220,10 +223,12 @@ void loop() {
       }
     }
   }
+  LoadCells[EEPROM[82+inByte-'A'] - 1].powerUp();
   LoadCells[EEPROM[82+inByte-'A'] - 1].refreshDataSet();
   long current_reading = LoadCells[EEPROM[82+inByte-'A'] - 1].smoothedData();
   int calibration;
   EEPROM.get(2+4*(inByte-'A'), calibration);
+  LoadCells[EEPROM[82+inByte-'A'] - 1].powerDown();
   Serial.print("Current Quantity Change: "); Serial.println(round(float(current_reading - last_LC_readings[EEPROM[82+inByte-'A'] - 1])/float(calibration)));
   last_LC_readings[EEPROM[82+inByte-'A'] - 1] = current_reading;
   if(LoadCells[EEPROM[82+inByte-'A'] - 1].DataOutOfRange()) Serial.println("LOADCELL DATA OUT OF RANGE.");
