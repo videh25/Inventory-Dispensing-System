@@ -14,32 +14,13 @@ int num_loadcells;
 uint8_t compa_loadcells[MAX_COMPARTMETNS];
 int compa_calibs[MAX_COMPARTMETNS];
 
-void init_attached_loadcells(){
+void init_attached_loadcells(int num_LCs){
   bool resume_ = true;
-  Serial.println("***");
-  Serial.println("Initialising Loadcells:");
-  Serial.println("Mount containers on loadcells and connect");
-  Serial.println("Empty the containers");
-  Serial.print("Enter the number of loadcells connected: ");
-  int num_loadcells_;
-  resume_ = false;
-  while(!resume_) {
-    if (Serial.available() > 0) {
-      num_loadcells_ = Serial.parseInt();
-      if (num_loadcells_ != 0) {
-        if(num_loadcells_ > MAX_COMPARTMETNS){
-          Serial.println("Too many loadcells");
-          while(1);
-        }
-        Serial.println(num_loadcells_);
-        resume_ = true;
-      }
-    }
-  }
+  
 
-  bool *loadcell_rdys = (bool*) malloc(sizeof(bool)*num_loadcells_);
-  memset(loadcell_rdys, false, num_loadcells_*sizeof(bool));
-  for(int i = 0; i < num_loadcells_; i++){
+  bool *loadcell_rdys = (bool*) malloc(sizeof(bool)*num_LCs);
+  memset(loadcell_rdys, false, num_LCs*sizeof(bool));
+  for(int i = 0; i < num_LCs; i++){
     LoadCells[i].init(2+2*i, 3+2*i);
   }
 
@@ -55,41 +36,41 @@ void init_attached_loadcells(){
     }
   }
 
-  for(int i = 0; i <num_loadcells_; i++){
+  for(int i = 0; i <num_LCs; i++){
     LoadCells[i].begin(128);
   }
 
   resume_ = false;
   while (!resume_) { //run startup, stabilization and tare, both modules simultaniously
-    for(int i = 0; i<num_loadcells_; i++){
+    for(int i = 0; i<num_LCs; i++){
       if (!loadcell_rdys[i]) loadcell_rdys[i] = LoadCells[i].startMultiple(2000., false);
     }
 
     resume_ = true;
-    for(int i = 0; i<num_loadcells_; i++){
+    for(int i = 0; i<num_LCs; i++){
       resume_ &= loadcell_rdys[i];
     }
   }
   free(loadcell_rdys);
 
   resume_ = false;
-  for(int i = 0; i < num_loadcells_; i++){
+  for(int i = 0; i < num_LCs; i++){
     LoadCells[i].tareNoDelay();
     if (LoadCells[i].update() == 2) resume_ = true;
   }
   
-  for(int i = 0; i<num_loadcells_; i++){
+  for(int i = 0; i<num_LCs; i++){
     if (LoadCells[i].getTareTimeoutFlag() || LoadCells[i].getSignalTimeoutFlag()) {
       Serial.print("Timeout, HX711 number: "); Serial.print(i+1); Serial.println(" wiring and pin designations");
       while (1);
     }
   }
 
-  for(int i  = 0; i < num_loadcells_; i++){
+  for(int i  = 0; i < num_LCs; i++){
     LoadCells[i].setTareOffset(0);
     LoadCells[i].setCalFactor(1.0);
   }
-  num_loadcells = num_loadcells_;
+  num_loadcells = num_LCs;
 }
 
 void calibrate_attached_compartments(){
@@ -188,10 +169,37 @@ void setup() {
     }
   }
 
-  init_attached_loadcells();
   if (inByte == 'c'){
+    Serial.println("***");
+    Serial.println("Initialising Loadcells:");
+    Serial.println("Mount containers on loadcells and connect");
+    Serial.println("Empty the containers");
+    Serial.print("Enter the number of loadcells connected: ");
+    int num_loadcells_;
+    resume_ = false;
+    while(!resume_) {
+      if (Serial.available() > 0) {
+        num_loadcells_ = Serial.parseInt();
+        if (num_loadcells_ != 0) {
+          if(num_loadcells_ > MAX_COMPARTMETNS){
+            Serial.println("Too many loadcells");
+            while(1);
+          }
+          Serial.println(num_loadcells_);
+          resume_ = true;
+        }
+      }
+    }
+    init_attached_loadcells(num_loadcells_);
     calibrate_attached_compartments();
     save_to_EEPROM();
+  }else{
+    init_attached_loadcells(EEPROM[1]);
+    for(int i = 0; i < EEPROM[1]; i++){
+      Serial.print("Measuring Initial Weight on LoadCell "); Serial.println(i+1);
+      LoadCells[i].refreshDataSet();
+      last_LC_readings[i] = LoadCells->smoothedData();
+    }
   }
 
   Serial.println("Starting test");
