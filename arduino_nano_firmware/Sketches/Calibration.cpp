@@ -61,7 +61,7 @@ void init_attached_loadcells(int num_LCs){
   
   for(int i = 0; i<num_LCs; i++){
     if (LoadCells[i].getTareTimeoutFlag() || LoadCells[i].getSignalTimeoutFlag()) {
-      Serial.print("Timeout, HX711 number: "); Serial.print(i+1); Serial.println(" wiring and pin designations");
+      Serial.print("Timeout, check HX711 number: "); Serial.print(i+1); Serial.println(" wiring and pin designations");
       while (1);
     }
   }
@@ -105,6 +105,7 @@ void calibrate_attached_compartments(){
       }
     }
 
+    Serial.println("Measuring Compartment Weight");
     LoadCells[compa_cell_-1].refreshDataSet();
     long old_measured_weight = LoadCells[compa_cell_-1].smoothedData();
     Serial.print("Measured a weight of "); Serial.print(old_measured_weight); Serial.print(" when compartment_"); Serial.print(compa); Serial.println(" is empty.");
@@ -120,6 +121,7 @@ void calibrate_attached_compartments(){
       }
     }
     
+    Serial.println("Measuring Compartment Weight");
     LoadCells[compa_cell_-1].refreshDataSet();
     long current_measured_weight = LoadCells[compa_cell_-1].smoothedData();
     long calib_weight_ = (current_measured_weight - old_measured_weight)/float(known_quan_);
@@ -224,6 +226,7 @@ void loop() {
     }
   }
   LoadCells[EEPROM[82+inByte-'A'] - 1].powerUp();
+  Serial.println("Measuring Compartment Weight");
   LoadCells[EEPROM[82+inByte-'A'] - 1].refreshDataSet();
   long current_reading = LoadCells[EEPROM[82+inByte-'A'] - 1].smoothedData();
   int calibration;
