@@ -7,12 +7,12 @@ from gsheet import update_sheet
 
 # Usefule Variables
 items_dict = {}
-items_dict['A'] = ""
-items_dict['B'] = "Wheel"
-items_dict['C'] = ""
-items_dict['D'] = "Solder Wire"
-items_dict['E'] = "Cutter"
-items_dict['F'] = "L-Brackets"
+items_dict['A'] = "Breadboard"
+items_dict['B'] = "Solder Wire"
+items_dict['C'] = "Type A USB Ports"
+#items_dict['D'] = "Solder Wire"
+#items_dict['E'] = "Cutter"
+#items_dict['F'] = "L-Brackets"
 
 no_of_compartments = [5]
 cupboard_addresses = [0x8, 0x4]
@@ -49,7 +49,7 @@ def main(args):
 		except:
 			time.sleep(1)
 	#I2Cbus.write_i2c_block_data(slaveAddress, 0x02, ByteSend)
-	time.sleep(0.5
+	time.sleep(0.5)
 	
 	try:
 		data=I2Cbus.read_i2c_block_data(slaveAddress,0x02,1)
@@ -130,24 +130,24 @@ def main(args):
 		#print("Relax now! The dispensing is over")
 		
 		### Read and update the change
-	flag = 1
-	while (flag == 1):
-		try:
-			I2Cbus.write_i2c_block_data(slaveAddress, 0x02, StrToByte('E')) #solenoid closing
-			flag = 0
-		except:
-			time.sleep(1)
-	response_byte2 = StrToByte('1')
+	#flag = 1
+	#while (flag == 1):
+	#	try:
+	#		I2Cbus.write_i2c_block_data(slaveAddress, 0x02, StrToByte('E')) #solenoid closing
+	#		flag = 0
+	#	except:
+	#		time.sleep(1)
+	#response_byte2 = StrToByte('1')
 	
-	while (response_byte2 != StrToByte('0')):
-		try:
-			response_byte2=I2Cbus.read_i2c_block_data(slaveAddress,0x02,1)
-			print(response_byte2)
-			print("In here")
-			time.sleep(4)
-		except:
-			print("Unable to lock, trying again")
-			time.sleep(0.5)	
+	#while (response_byte2 != StrToByte('0')):
+	#	try:
+	#		response_byte2=I2Cbus.read_i2c_block_data(slaveAddress,0x02,1)
+	#		print(response_byte2)
+	#		print("In here")
+	#		time.sleep(4)
+	#	except:
+	#		print("Unable to lock, trying again")
+	#		time.sleep(0.5)	
 	
 	flag = 1
 	while (flag == 1):
@@ -161,7 +161,7 @@ def main(args):
 	flag = 1
 	while(flag == 1):
 		try:
-			change=I2Cbus.read_i2c_block_data(slaveAddress, 0x02,15)
+			change=I2Cbus.read_i2c_block_data(slaveAddress, 0x02,9)
 			flag = 0
 		except:
 			time.sleep(1)
@@ -175,7 +175,7 @@ def main(args):
 	change = "".join([chr(i) for i in change]).strip()
 	print(change)
 	for i in range(0, len(change), 3):
-		compartment = item_dict[change[i]]
+		compartment = items_dict[change[i]]
 		value_change = int(change[i+1:i+3]) - 50
 		if (value_change != 0):
 			update_sheet([user, compartment, value_change])			
