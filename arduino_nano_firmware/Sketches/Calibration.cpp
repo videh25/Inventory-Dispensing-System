@@ -13,6 +13,7 @@ int num_compartments;
 int num_loadcells;
 uint8_t compa_loadcells[MAX_COMPARTMETNS];
 int compa_calibs[MAX_COMPARTMETNS];
+int load_cell_dout_pins[MAX_COMPARTMETNS] = {2, 4};
 
 void init_attached_loadcells(int num_LCs){
   bool resume_ = true;
@@ -21,7 +22,7 @@ void init_attached_loadcells(int num_LCs){
   bool *loadcell_rdys = (bool*) malloc(sizeof(bool)*num_LCs);
   memset(loadcell_rdys, false, num_LCs*sizeof(bool));
   for(int i = 0; i < num_LCs; i++){
-    LoadCells[i].init(2+2*i, 3+2*i);
+    LoadCells[i].init(load_cell_dout_pins[i], load_cell_dout_pins[i]+1);
   }
 
   resume_ = false;
@@ -61,8 +62,15 @@ void init_attached_loadcells(int num_LCs){
   
   for(int i = 0; i<num_LCs; i++){
     if (LoadCells[i].getTareTimeoutFlag() || LoadCells[i].getSignalTimeoutFlag()) {
-      Serial.print("Timeout, check HX711 number: "); Serial.print(i+1); Serial.println(" wiring and pin designations");
-      while (1);
+      Serial.println(1+i);
+      Serial.println(num_LCs);
+      if (i == 0){
+        continue;
+      }else{
+        Serial.print("Timeout, check HX711 number: "); Serial.print(i+1); Serial.println(" wiring and pin designations");
+        Serial.flush();
+        while (1);
+      }
     }
   }
 
@@ -173,9 +181,9 @@ void setup() {
 
   if (inByte == 'c'){
     Serial.println("***");
-    Serial.println("Initialising Loadcells:");
-    Serial.println("Mount containers on loadcells and connect");
-    Serial.println("Empty the containers");
+    // Serial.println("Initialising Loadcells:");
+    // Serial.println("Mount containers on loadcells and connect");
+    // Serial.println("Empty the containers");
     Serial.print("Enter the number of loadcells connected: ");
     int num_loadcells_;
     resume_ = false;
@@ -184,7 +192,7 @@ void setup() {
         num_loadcells_ = Serial.parseInt();
         if (num_loadcells_ != 0) {
           if(num_loadcells_ > MAX_COMPARTMETNS){
-            Serial.println("Too many loadcells");
+            // Serial.println("Too many loadcells");
             while(1);
           }
           Serial.println(num_loadcells_);
@@ -198,7 +206,7 @@ void setup() {
   }else{
     init_attached_loadcells(EEPROM[1]);
     for(int i = 0; i < EEPROM[1]; i++){
-      Serial.print("Measuring Initial Weight on LoadCell "); Serial.println(i+1);
+      // Serial.print("Measuring Initial Weight on LoadCell "); Serial.println(i+1);
       LoadCells[i].refreshDataSet();
       last_LC_readings[i] = LoadCells->smoothedData();
     }

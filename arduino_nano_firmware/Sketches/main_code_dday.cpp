@@ -84,18 +84,18 @@ void init_else(){
 }
 
 void brace_up(){
-  // Serial.println("Bracing Up!");
-  // Serial.flush();
+  Serial.println("Bracing Up!");
+  Serial.flush();
   for(int i = 0; i < EEPROM[1]; i++){
-    // Serial.print("Loadcell: "); // Serial.println(i); // Serial.flush();
+    Serial.print("Loadcell: "); Serial.println(i); Serial.flush();
     LoadCells[i].powerUp();
     LoadCells[i].refreshDataSet();
     last_readings[i] = LoadCells[i].smoothedData();
-    // Serial.println(last_readings[i]);
-    // Serial.flush();
+    Serial.println(last_readings[i]);
+    Serial.flush();
   }
-  // Serial.println("Braced Up!");
-  // Serial.flush();
+  Serial.println("Braced Up!");
+  Serial.flush();
   digitalWrite(17, LOW);
   dispensing_on = true;
 }
@@ -110,7 +110,7 @@ void check_errors(){
   for(int i = 0; i<EEPROM[1]; i++){
     if (LoadCells[i].getTareTimeoutFlag() || LoadCells[i].getSignalTimeoutFlag()) {
       no_errors = false;
-      // Serial.println("There is Error.");
+      Serial.println("There is Error.");
       break;
     }
   }
@@ -119,41 +119,41 @@ void check_errors(){
 }
 
 void dispensing(){
-  // Serial.println("Dispensing Mode On!");
-  // Serial.flush();
+  Serial.println("Dispensing Mode On!");
+  Serial.flush();
   while(latest_Byte == 'A'){
     for (int i = 0; i < EEPROM[0]; i++){
       openned_this_time[i] = openned_this_time[i] || (HIGH == digitalRead(4 + 2*(EEPROM[1]+extra_LC) + i));
       delay(500);
       Wire.flush();
-      // Serial.print("In the loop"); // Serial.println(4 + 2*(EEPROM[1]+extra_LC) + i);
+      Serial.print("In the loop"); Serial.println(4 + 2*(EEPROM[1]+extra_LC) + i);
     }
   }
-  // Serial.println("Dispensing Mode Off!");
-  // Serial.flush();
+  Serial.println("Dispensing Mode Off!");
+  Serial.flush();
 }
 
 void relax(){
-  // Serial.println("Relaxing with a sigh...");
+  Serial.println("Relaxing with a sigh...");
   digitalWrite(17, HIGH);
   dispensing_on = false;
 }
 
 void fromMaster(int howMany)
 {
-  // // Serial.print("HowMany: "); // Serial.println(howMany);
-  // Serial.println("fromMaster");
+  // Serial.print("HowMany: "); Serial.println(howMany);
+  Serial.println("fromMaster");
   Wire.read();
   byte check_value = Wire.read();
   if (check_value != 255){
     latest_Byte = char(int(check_value));
-    // Serial.println(latest_Byte);
+    Serial.println(latest_Byte);
   } 
   delay(10);
 }
 
 void toMaster() {
-  // Serial.println(latest_Byte);
+  Serial.println(latest_Byte);
   if(latest_Byte == '0'){
     if(there_is_error){
       Wire.write('1');
@@ -169,16 +169,16 @@ void toMaster() {
     if(!bracing_call){
       bracing_call = true;
       Wire.write('1');
-      // Serial.println('1');
+      Serial.println('1');
       Wire.flush();
     }else if(!braced_up){
-      // Serial.println('1');
+      Serial.println('1');
       Wire.write('1');
       Wire.flush();
     }else{
       bracing_call = false;
       braced_up = false;
-      // Serial.println('0');
+      Serial.println('0');
       Wire.write('0');
       Wire.flush();
     }
@@ -191,7 +191,7 @@ void toMaster() {
     }
   }else if(latest_Byte == 'B'){
     for(int j = 0; j < 3*EEPROM[0]; j++){
-      // Serial.write(count_buff[j]);
+      Serial.write(count_buff[j]);
       Wire.write(count_buff[j]);
     }
   }else if(latest_Byte == 'E'){
@@ -222,15 +222,15 @@ void calculate_change(){
       EEPROM.get(2+4*(compa-'A'), calibration);
       LoadCells[EEPROM[82+compa-'A'] - 1].powerDown();
       int change = (round(float(current_reading - last_readings[EEPROM[82+compa-'A'] - 1])/float(calibration)));
-      // Serial.print("Change of "); // Serial.print(change); // Serial.print(" detected on Compartment_"); // Serial.println(compa);
+      Serial.print("Change of "); Serial.print(change); Serial.print(" detected on Compartment_"); Serial.println(compa);
       last_readings[EEPROM[82+compa-'A'] - 1] = current_reading;
       count_buff[3*(compa-'A') + 1] = char('0' + int(change + 50)/10);
       count_buff[3*(compa-'A') + 2] = char('0' + int(change + 50)%10);
     }else{
       count_buff[3*(compa-'A') + 1] = '5';
       count_buff[3*(compa-'A') + 2] = '0';
-      // Serial.print("compa num: "); // Serial.println(compa-'A');
-      // Serial.print("No door open detected on Compartment_"); // Serial.println(compa);
+      Serial.print("compa num: "); Serial.println(compa-'A');
+      Serial.print("No door open detected on Compartment_"); Serial.println(compa);
     }
   }
 }
@@ -238,16 +238,16 @@ void calculate_change(){
 void setup() {
   memset(openned_this_time, false, sizeof(bool)*MAX_COMPARTMENTS);
 
-  // Serial.begin(57600);
+  Serial.begin(57600);
   Wire.begin(i2c_add);
   Wire.onReceive(fromMaster);
   Wire.onRequest(toMaster);
-  // Serial.print("Loadcells: "); // Serial.println(EEPROM[1]);
-  // Serial.print("Comaprtments: "); // Serial.println(EEPROM[0]);
+  Serial.print("Loadcells: "); Serial.println(EEPROM[1]);
+  Serial.print("Comaprtments: "); Serial.println(EEPROM[0]);
 
   init_attached_loadcells();
   init_else();
-  // Serial.println("here0");
+  Serial.println("here0");
 }
 
 void loop() {
